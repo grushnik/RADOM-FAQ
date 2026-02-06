@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FAQ-PLASMA</title>
+
+  <style>
+    :root{
+      --radom-purple: #5f61a8;
+      --radom-orange: #f4a63a;
+      --ink: rgba(0,0,0,0.86);
+      --white: #ffffff;
+      --white-95: rgba(255,255,255,0.95);
+      --white-90: rgba(255,255,255,0.90);
+      --white-80: rgba(255,255,255,0.80);
+      --rule: rgba(255,255,255,0.28);
+      --maxw: 1120px;
+      --radius: 16px;
+      --shadow: 0 10px 26px rgba(0,0,0,0.12);
+    }
+
+    *{ box-sizing: border-box; }
+    body{
+      margin:0;
+      font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--radom-purple);
+      color: var(--white);
+      line-height: 1.6;
+    }
+
+    .container{
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 44px 24px;
+    }
+
+    .hero h1{
+      font-size: 34px;
+      margin-bottom: 10px;
+    }
+
+    summary{
+      cursor:pointer;
+      padding:16px 18px;
+      font-weight:800;
+      font-size:16px;
+      text-transform: uppercase;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+
+    .answer{
+      padding:0 18px 16px;
+      font-size:15px;
+      text-transform: lowercase;
+    }
+
+    details{
+      border-radius: var(--radius);
+      margin-bottom:14px;
+      background: rgba(255,255,255,0.08);
+      box-shadow: var(--shadow);
+    }
+
+    .section.orange details{
+      background: rgba(255,255,255,0.6);
+      color: var(--ink);
+    }
+
+    .section{
+      padding: 40px 0;
+    }
+
+    .orange{
+      background: var(--radom-orange);
+      color: var(--ink);
+    }
+  </style>
+</head>
+
+<body>
+  <section class="section purple">
+    <div class="container">
+      <div class="hero">
+        <h1>Frequently asked questions about radom plasma technology</h1>
+      </div>
+      <div id="faqPurple"></div>
+    </div>
+  </section>
+
+  <section class="section orange">
+    <div class="container">
+      <div id="faqOrange"></div>
+    </div>
+  </section>
+
+<script>
+const FAQS = [
+  {q:"WHAT’S THE DIFFERENCE BETWEEN COLD PLASMA AND HOT PLASMA?",a:"cold plasma operates at low bulk gas temperatures while maintaining highly energetic electrons, making it suitable for heat-sensitive applications. hot plasma operates at very high gas temperatures and approaches local thermodynamic equilibrium. radom standard products generate hot plasma."},
+  {q:"CAN THE CERAWAVE PLASMA TORCH OPERATE ON AIR?",a:"yes. operation in air produces nitrogen oxides that must be safely exhausted."},
+  {q:"CAN THE PLASMA TORCH OPERATE ON HYDROGEN?",a:"yes. hydrogen operation typically requires high-power systems and appropriate safety infrastructure."},
+  {q:"IS TORCH CUSTOMIZATION AVAILABLE FOR SPECIFIC APPLICATIONS?",a:"yes. torch geometry, interfaces, cooling, and injectors can be customized."},
+  {q:"CAN POWDERS OR SOLID FEEDSTOCK BE INJECTED DIRECTLY INTO THE PLASMA TORCH?",a:"yes. axial or aerosol injection is supported with appropriate injector design."},
+  {q:"WHAT TEMPERATURE RANGE DOES MICROWAVE PLASMA USUALLY OPERATE IN?",a:"the hottest region typically reaches 5000–6000 k, while bulk temperatures range from 2000–4000 k."}
+];
+
+const split = Math.ceil(FAQS.length/2);
+const p = document.getElementById("faqPurple");
+const o = document.getElementById("faqOrange");
+
+FAQS.forEach((f,i)=>{
+  const d=document.createElement("details");
+  const s=document.createElement("summary");
+  s.textContent=f.q.toUpperCase();
+  const a=document.createElement("div");
+  a.className="answer";
+  a.textContent=f.a.toLowerCase();
+  d.appendChild(s); d.appendChild(a);
+  (i<split?p:o).appendChild(d);
+});
+</script>
+</body>
+</html>
